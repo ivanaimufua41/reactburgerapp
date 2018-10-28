@@ -14,7 +14,7 @@ class orderSummary extends Component{
         <h3>Your Order</h3>
         <p>A burger made with the following:</p>
         <ul>
-          {ingredientSummary}
+          {ingredientSummary} 
         </ul>
         <p><strong>total Price:$ {this.props.price.toFixed(2)}</strong></p>
         <p>Checkout?</p>
