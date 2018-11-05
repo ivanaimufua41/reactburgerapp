@@ -30,6 +30,8 @@ const Customer = {
   deliveryMethod: "Bike"
 };
 
+const orderURL = "https://burgerapp-react-58cc7.firebaseio.com/ingredients.json";
+
 class burgerBuilder extends Component {
   state = {
     ingredients: null,
@@ -42,7 +44,7 @@ class burgerBuilder extends Component {
 
   componentDidMount() {
     axios
-      .get("https://burgerapp-react-58cc7.firebaseio.com/ingredients.json")
+      .get(orderURL)
       .then(response => {
         this.setState({ ingredients: response.data });
       })
