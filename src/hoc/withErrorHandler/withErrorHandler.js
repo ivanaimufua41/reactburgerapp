@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Modal from "../../components/UIElements/Modal/Modal";
-import Aex from "../aex";
+import Aex from "../commonWrapper";
 
 const withErrorhandler = (WrappedComponent, axios) => {
   return class extends Component {

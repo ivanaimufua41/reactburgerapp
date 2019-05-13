@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../../hoc/aex';
+import Aux from '../../../hoc/commonWrapper';
 import Button from '../../UIElements/Button/Button';
 
 class orderSummary extends Component{
