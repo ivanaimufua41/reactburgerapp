@@ -18,7 +18,7 @@ class CheckoutForm extends Component {
               </li>
               <li>
                 <label>
-                  Amount:  
+                  Amount:  {this.props.TotalAmount}
                 </label>
               </li>
             </ul>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Modal from "../../components/UIElements/Modal/Modal";
-import Aex from "../commonWrapper";
+import CommonWrapper from "../commonWrapper";
 
 const withErrorhandler = (WrappedComponent, axios) => {
   return class extends Component {
@@ -34,7 +34,7 @@ const withErrorhandler = (WrappedComponent, axios) => {
 
     render() {
       return (
-        <Aex>
+        <CommonWrapper>
           <Modal
             show={this.state.error}
             modalClosed={this.errorConfirmedHandler}
@@ -42,7 +42,7 @@ const withErrorhandler = (WrappedComponent, axios) => {
             {this.state.error ? this.state.error.message : null}
           </Modal>
           <WrappedComponent {...this.props} />
-        </Aex>
+        </CommonWrapper>
       );
     }
   };

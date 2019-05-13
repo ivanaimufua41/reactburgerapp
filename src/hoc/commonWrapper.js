@@ -1,5 +1,5 @@
 
 // wrapper component to render children
-const commonWrapperComponent = (props) => props.children;
+const commonWrapper = (props) => props.children;
 
-export default commonWrapperComponent;
+export default commonWrapper;

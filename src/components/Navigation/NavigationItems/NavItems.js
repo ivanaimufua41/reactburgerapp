@@ -3,7 +3,7 @@ import classes from './navItems.css';
 import NavigationItem from './navItem/NavItem';
 
 const navItems = (props) =>{
-  return(
+  return (
     <ul className={classes.NavigationItems}>
       <NavigationItem link="/" active>
         Burger Builder

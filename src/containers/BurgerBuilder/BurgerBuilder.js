@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import commonWrapper from "../../hoc/commonWrapper";
+import CommonWrapper from "../../hoc/commonWrapper";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UIElements/Modal/Modal";
@@ -120,20 +120,22 @@ class burgerBuilder extends Component {
   };
 
   setOrderSummary = () => {
-    let orderSummary = null;
+    let orderSummary = <Spinner />;
 
     if (this.state.loading) {
       orderSummary = <Spinner />;
     }
 
-    orderSummary = (
-      <OrderSummary
-        ingredients={this.state.ingredients}
-        purchaseCancelled={this.modalClosedHandler}
-        purchaseContinue={this.purchaseContinueHandler}
-        price={this.state.totalPrice}
-      />
-    );
+    if (this.state.ingredients !== undefined) {
+      orderSummary = (
+        <OrderSummary
+          ingredients={this.state.ingredients}
+          purchaseCancelled={this.modalClosedHandler}
+          purchaseContinue={this.purchaseContinueHandler}
+          price={this.state.totalPrice}
+        />
+      );
+    }
 
     return orderSummary;
   }
@@ -160,7 +162,7 @@ class burgerBuilder extends Component {
     
       if (this.state.ingredients) {
         burger = (
-          <Aux>
+          <CommonWrapper>
             <Burger ingredients={this.state.ingredients} />
             <BuildControls
               addIngredient={this.addIngredientHandler}
@@ -170,7 +172,7 @@ class burgerBuilder extends Component {
               purchase={this.state.purchasable}
               ordered={this.purchaseHandler}
             />
-          </Aux>
+          </CommonWrapper>
         );
       }
       return burger;
@@ -179,10 +181,10 @@ class burgerBuilder extends Component {
 
 render() {
   const orderSummary = this.setOrderSummary();
-  const burder = this.setBurger();
+  const burger = this.setBurger();
 
   return (
-    <Aux>
+    <CommonWrapper>
       <Modal
         show={this.state.purchasing}
         modalClosed={this.modalClosedHandler}
@@ -190,7 +192,7 @@ render() {
         {orderSummary}
       </Modal>
       {burger}
-    </Aux>
+    </CommonWrapper>
   );
 }
 }
