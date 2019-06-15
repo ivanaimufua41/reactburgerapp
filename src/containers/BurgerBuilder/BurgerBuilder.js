@@ -5,10 +5,8 @@ import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UIElements/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "../../components/UIElements/Spinner/Spinner";
-import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
-import BurgerAPI from './BurgerApi';
 
-import axios from "../../axios-order";
+import BurgerAPI from './BurgerApi';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -16,8 +14,6 @@ const INGREDIENT_PRICES = {
   meat: 1.7,
   bacon: 0.7
 };
-
-const orderURL = "https://burgerapp-react-58cc7.firebaseio.com/ingredients.json";
 
 class burgerBuilder extends Component {
   state = {
@@ -45,7 +41,7 @@ class burgerBuilder extends Component {
 
   componentDidMount() {
     BurgerAPI.getBurgerOrder()
-      .then(response => this.setState({ ingredients: response.data }))
+      .then(ingredients => this.setState({ ingredients, loading: false }))
       .catch((err) => this.setState({ error: true }))
   }
 
@@ -109,7 +105,7 @@ class burgerBuilder extends Component {
   };
 
   setOrderSummary = () => {
-    const { loading, ingredients } = this.state;
+    const { loading, ingredients, totalPrice } = this.state;
     let orderSummary = <Spinner />;
 
     if (loading) {
@@ -165,13 +161,14 @@ class burgerBuilder extends Component {
   }
 
   render() {
+    const { purchasing } = this.state;
     const orderSummary = this.setOrderSummary();
     const burger = this.setBurger();
 
     return (
       <CommonWrapper>
         <Modal
-          show={this.state.purchasing}
+          show={purchasing}
           modalClosed={this.modalClosedHandler}
         >
           {orderSummary}
@@ -182,4 +179,4 @@ class burgerBuilder extends Component {
   }
 }
 
-export default withErrorHandler(burgerBuilder, axios);
+export default burgerBuilder;

@@ -1,3 +1,5 @@
+import axios from "../../axios-order";
+
 const orderURL = "https://burgerapp-react-58cc7.firebaseio.com/ingredients.json";
 
 const burgerAPI = {
